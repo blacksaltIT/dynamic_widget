@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import '../../dynamic_widget.dart';
 
-class OpacityWidgetSerializer implements WidgetSerializer {
+class OpacityWidgetSerializer extends WidgetSerializer {
   String widgetName = "Opacity";
 
   @override

@@ -2,7 +2,7 @@ import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
-class AssetImageWidgetSerializer implements WidgetSerializer {
+class AssetImageWidgetSerializer extends WidgetSerializer {
   String widgetName = "AssetImage";
   @override
   bool forWidget(Widget widget) {
@@ -36,7 +36,7 @@ class AssetImageWidgetSerializer implements WidgetSerializer {
   }
 }
 
-class NetworkImageWidgetSerializer implements WidgetSerializer {
+class NetworkImageWidgetSerializer extends WidgetSerializer {
   String widgetName = "NetworkImage";
 
   @override
@@ -69,7 +69,7 @@ class NetworkImageWidgetSerializer implements WidgetSerializer {
   }
 }
 
-class FileImageWidgetSerializer implements WidgetSerializer {
+class FileImageWidgetSerializer extends WidgetSerializer {
   String widgetName = "FileImage";
 
   @override

@@ -2,7 +2,7 @@ import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
-class PaddingWidgetSerializer implements WidgetSerializer {
+class PaddingWidgetSerializer extends WidgetSerializer {
   String widgetName = "Padding";
 
   @override

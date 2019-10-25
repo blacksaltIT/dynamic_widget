@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../dynamic_widget.dart';
 import '../utils.dart';
 
-class RowWidgetSerializer implements WidgetSerializer {
+class RowWidgetSerializer extends WidgetSerializer {
   String widgetName = "Row";
 
   @override
@@ -27,7 +27,7 @@ class RowWidgetSerializer implements WidgetSerializer {
   }
 }
 
-class ColumnWidgetSerializer implements WidgetSerializer {
+class ColumnWidgetSerializer extends WidgetSerializer {
   String widgetName = "Column";
 
   @override

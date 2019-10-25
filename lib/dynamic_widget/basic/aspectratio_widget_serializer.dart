@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../dynamic_widget.dart';
 
-class AspectRatioWidgetSerializer implements WidgetSerializer {
+class AspectRatioWidgetSerializer extends WidgetSerializer {
   String widgetName = "AspectRatio";
 
   @override

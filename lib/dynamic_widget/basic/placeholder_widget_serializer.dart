@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../dynamic_widget.dart';
 import '../utils.dart';
 
-class PlaceholderWidgetSerializer implements WidgetSerializer {
+class PlaceholderWidgetSerializer extends WidgetSerializer {
   String widgetName = "Placeholder";
 
   @override

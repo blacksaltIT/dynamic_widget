@@ -4,7 +4,7 @@ import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
 
-class GridViewWidgetSerializer implements WidgetSerializer {
+class GridViewWidgetSerializer extends WidgetSerializer {
   String widgetName = "GridView";
 
   @override

@@ -2,7 +2,7 @@ import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
-class FittedBoxWidgetSerializer implements WidgetSerializer {
+class FittedBoxWidgetSerializer extends WidgetSerializer {
   String widgetName = "FittedBox";
 
   @override

@@ -2,7 +2,7 @@ import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
-class ClipRRectWidgetSerializer implements WidgetSerializer {
+class ClipRRectWidgetSerializer extends WidgetSerializer {
   String widgetName = "ClipRRect";
 
   @override

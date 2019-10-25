@@ -3,7 +3,7 @@ import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
 
-class PageViewWidgetSerializer implements WidgetSerializer {
+class PageViewWidgetSerializer extends WidgetSerializer {
   String widgetName = "PageView";
 
   @override

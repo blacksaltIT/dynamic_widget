@@ -4,7 +4,7 @@ import '../utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class RaisedButtonWidgetSerializer implements WidgetSerializer {
+class RaisedButtonWidgetSerializer extends WidgetSerializer {
   String widgetName = "RaisedButton";
 
   @override

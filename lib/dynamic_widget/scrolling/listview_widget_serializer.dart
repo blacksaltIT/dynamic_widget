@@ -4,7 +4,7 @@ import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
 
-class ListViewWidgetSerializer implements WidgetSerializer {
+class ListViewWidgetSerializer extends WidgetSerializer {
   String widgetName = "ListView";
 
   @override

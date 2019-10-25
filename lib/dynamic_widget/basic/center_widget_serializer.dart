@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../dynamic_widget.dart';
 
-class CenterWidgetSerializer implements WidgetSerializer {
+class CenterWidgetSerializer extends WidgetSerializer {
   String widgetName = "Center";
 
   @override

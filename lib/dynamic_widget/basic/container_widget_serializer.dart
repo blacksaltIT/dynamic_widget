@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../dynamic_widget.dart';
 import '../utils.dart';
 
-class ContainerWidgetSerializer implements WidgetSerializer {
+class ContainerWidgetSerializer extends WidgetSerializer {
   String widgetName = "Container";
 
   @override
