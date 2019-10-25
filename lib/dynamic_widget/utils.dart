@@ -430,6 +430,7 @@ ImageRepeat parseImageRepeat(String imageRepeatString) {
 }
 
 Rect parseRect(String fromLTRBString) {
+  if (fromLTRBString == null) return null;
   var strings = fromLTRBString.split(',');
   return Rect.fromLTRB(double.parse(strings[0]), double.parse(strings[1]),
       double.parse(strings[2]), double.parse(strings[3]));
@@ -575,4 +576,190 @@ Clip parseClipBehavior(String clipBehaviorString) {
       return Clip.antiAliasWithSaveLayer;
   }
   return Clip.antiAlias;
+}
+
+
+// Seralizing utils
+
+String serializeTextAlign(TextAlign textAlign) {
+  if (textAlign == null) {
+    return "left";
+  }
+  return textAlign.toString().split('.').last;
+}
+
+String serializeTextOverflow(TextOverflow textOverflow) {
+  if (textOverflow == null) {
+    return "ellipsis";
+  }
+  return textOverflow.toString().split('.').last;
+}
+
+String serializeTextDirection(TextDirection textDirection) {
+  if (textDirection == null) {
+    return "ltr";
+  }
+  return textDirection.toString().split('.').last;
+}
+
+String serializeColor(Color color) {
+  if (color == null) return null;
+  return "#${color.value.toRadixString(16).substring(2)}";
+}
+
+Map<String, dynamic> serializeTextStyle(TextStyle textStyle) {
+  return {
+    'color': serializeColor(textStyle.color),
+    'debugLabel': textStyle.debugLabel,
+    'fontFamily': textStyle.fontFamily,
+    'fontSize': textStyle.fontSize,
+    'fontStyle': textStyle.fontStyle.toString().split('.').last,
+    'fontWeight': textStyle.fontWeight == FontWeight.w400 ? "normal" : "bold"
+  };
+}
+
+String serializeAlignment(Alignment alignment) {
+  if (alignment == null) {
+    return "topLeft";
+  }
+  return alignment.toString().split('.').last;
+}
+
+Map<String, dynamic> serializeBoxConstraints(BoxConstraints boxConstraints) {
+  return {
+    'minWidth': boxConstraints.minWidth ?? 0.0,
+    'maxWidth': boxConstraints.maxWidth == null ||
+            boxConstraints.maxWidth == double.infinity
+        ? 9999999999
+        : boxConstraints.maxWidth,
+    'minHeight': boxConstraints.minHeight ?? 0.0,
+    'maxHeight': boxConstraints.maxHeight == null ||
+            boxConstraints.maxHeight == double.infinity
+        ? 9999999999
+        : boxConstraints.maxHeight,
+  };
+}
+
+String serializeBorderRadius(BorderRadius borderRadius) {
+  if (borderRadius == null) return null;
+
+  return "${borderRadius.topLeft.x},${borderRadius.topRight.x},${borderRadius.bottomRight.x},${borderRadius.bottomLeft.x}";
+}
+
+String serializeEdgeInsetsGeometry(EdgeInsets edgeInsetsGeometry) {
+  if (edgeInsetsGeometry == null) return null;
+
+  return "${edgeInsetsGeometry.left},${edgeInsetsGeometry.top},${edgeInsetsGeometry.right},${edgeInsetsGeometry.bottom}";
+}
+
+String serializeCrossAxisAlignment(CrossAxisAlignment crossAxisAlignment) {
+  if (crossAxisAlignment == null) {
+    return "start";
+  }
+  return crossAxisAlignment.toString().split('.').last;
+}
+
+String serializeMainAxisAlignment(MainAxisAlignment mainAxisAlignment) {
+  if (mainAxisAlignment == null) {
+    return "start";
+  }
+  return mainAxisAlignment.toString().split('.').last;
+}
+
+String serializeMainAxisSize(MainAxisSize mainAxisSize) {
+  if (mainAxisSize == null) {
+    return "max";
+  }
+  return mainAxisSize.toString().split('.').last;
+}
+
+String serializeTextBaseline(TextBaseline textBaseline) {
+  if (textBaseline == null) {
+    return "ideographic";
+  }
+  return textBaseline.toString().split('.').last;
+}
+
+String serializeVerticalDirection(VerticalDirection verticalDirection) {
+  if (verticalDirection == null) {
+    return "down";
+  }
+  return verticalDirection.toString().split('.').last;
+}
+
+String serializeBlendMode(BlendMode blendMode) {
+  if (blendMode == null) {
+    return null;
+  }
+  return blendMode.toString().split('.').last;
+}
+
+String serializeBoxFit(BoxFit boxFit) {
+  if (boxFit == null) {
+    return null;
+  }
+  return boxFit.toString().split('.').last;
+}
+
+String serializeImageRepeat(ImageRepeat imageRepeat) {
+  if (imageRepeat == null) {
+    return null;
+  }
+  return imageRepeat.toString().split('.').last;
+}
+
+String serializeRect(Rect rect) {
+  if (rect == null)
+    return null;
+    
+  return "${rect.left},${rect.top},${rect.right},${rect.bottom}";
+}
+
+String serializeFilterQuality(FilterQuality filterQuality) {
+  if (filterQuality == null) {
+    return null;
+  }
+  return filterQuality.toString().split('.').last;
+}
+
+String serializeStackFit(StackFit stackFit) {
+  if (stackFit == null) {
+    return null;
+  }
+  return stackFit.toString().split('.').last;
+}
+
+String serializeOwerflow(Overflow overflow) {
+  if (overflow == null) {
+    return null;
+  }
+  return overflow.toString().split('.').last;
+}
+
+String serializeAxis(Axis axis) {
+  if (axis == null) {
+    return "horizontal";
+  }
+  return axis.toString().split('.').last;
+}
+
+String serializeWrapAlignment(WrapAlignment wrapAlignment) {
+  if (wrapAlignment == null) {
+    return "start";
+  }
+  return wrapAlignment.toString().split('.').last;
+}
+
+String serializeWrapCrossAlignment(WrapCrossAlignment wrapCrossAlignment) {
+  if (wrapCrossAlignment == null) {
+    return "start";
+  }
+  return wrapCrossAlignment.toString().split('.').last;
+}
+
+String serializeClipBehavior(Clip clipBehavior) {
+  if (clipBehavior == null) {
+    return "antiAlias";
+  }
+  return clipBehavior.toString().split('.').last;
 }

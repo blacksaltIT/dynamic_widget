@@ -80,6 +80,9 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   //to bottom.
   bool loadCompleted = false;
 
+  List<Widget> get items => _items;
+  ListViewParams get params => _params;
+
   _ListViewWidgetState(this._params) {
     if (_params.children != null) {
       _items.addAll(_params.children);
@@ -164,11 +167,23 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 [
     {
       "type": "AssetImage",
-      "name": "assets/images/burger.png"
+      "name": "assets/images/burger.jpg"
     },
     {
       "type": "AssetImage",
-      "name": "assets/images/burger.png"
+      "name": "assets/images/burger.jpg"
+    },
+    {
+      "type": "AssetImage",
+      "name": "assets/images/burger.jpg"
+    },
+    {
+      "type": "AssetImage",
+      "name": "assets/images/burger.jpg"
+    },
+    {
+      "type": "AssetImage",
+      "name": "assets/images/burger.jpg"
     }
 ]          
       """;

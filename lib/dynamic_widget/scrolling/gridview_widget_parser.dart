@@ -67,8 +67,16 @@ class GridViewWidget extends StatefulWidget {
 
   GridViewWidget(this._params, this._buildContext);
 
+  _GridViewWidgetState _state;
+  _GridViewWidgetState get state {
+    return _state;
+  }
+
   @override
-  _GridViewWidgetState createState() => _GridViewWidgetState(_params);
+  _GridViewWidgetState createState() {
+    if (_state == null) _state = _GridViewWidgetState(_params);
+    return _state;
+  }
 }
 
 class _GridViewWidgetState extends State<GridViewWidget> {
@@ -77,6 +85,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
   ScrollController _scrollController = new ScrollController();
   bool isPerformingRequest = false;
+
+  List<Widget> get items => _items;
+  GridViewParams get params => _params;
 
   //If there are no more items, it should not try to load more data while scroll
   //to bottom.

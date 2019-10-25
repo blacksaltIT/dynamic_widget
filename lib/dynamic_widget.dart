@@ -25,7 +25,28 @@ import 'package:flutter/widgets.dart';
 import 'dart:convert';
 import 'package:logging/logging.dart';
 
+import 'dynamic_widget/basic/align_widget_serializer.dart';
+import 'dynamic_widget/basic/aspectratio_widget_serializer.dart';
+import 'dynamic_widget/basic/baseline_widget_serializer.dart';
+import 'dynamic_widget/basic/button_widget_serializer.dart';
+import 'dynamic_widget/basic/center_widget_serializer.dart';
 import 'dynamic_widget/basic/cliprrect_widget_parser.dart';
+import 'dynamic_widget/basic/cliprrect_widget_serializer.dart';
+import 'dynamic_widget/basic/container_widget_serializer.dart';
+import 'dynamic_widget/basic/expanded_widget_serializer.dart';
+import 'dynamic_widget/basic/fittedbox_widget_serializer.dart';
+import 'dynamic_widget/basic/image_widget_serializer.dart';
+import 'dynamic_widget/basic/opacity_widget_serializer.dart';
+import 'dynamic_widget/basic/padding_widget_serializer.dart';
+import 'dynamic_widget/basic/placeholder_widget_serializer.dart';
+import 'dynamic_widget/basic/row_column_widget_serializer.dart';
+import 'dynamic_widget/basic/sizedbox_widget_serializer.dart';
+import 'dynamic_widget/basic/stack_positioned_widget_serializer.dart';
+import 'dynamic_widget/basic/text_widget_serializer.dart';
+import 'dynamic_widget/basic/wrap_widget_serializer.dart';
+import 'dynamic_widget/scrolling/gridview_widget_serializer.dart';
+import 'dynamic_widget/scrolling/listview_widget_serializer.dart';
+import 'dynamic_widget/scrolling/page_widget_serializer.dart';
 
 class DynamicWidgetBuilder {
   static final Logger log = Logger('DynamicWidget');
@@ -60,11 +81,46 @@ class DynamicWidgetBuilder {
     ClipRRectWidgetParser()
   ];
 
+  static final _serializers = [
+    ContainerWidgetSerializer(),
+    TextWidgetSerializer(),
+    RowWidgetSerializer(),
+    ColumnWidgetSerializer(),
+    RaisedButtonWidgetSerializer(),
+    AssetImageWidgetSerializer(),
+    NetworkImageWidgetSerializer(),
+    FileImageWidgetSerializer(),
+    PlaceholderWidgetSerializer(),
+    GridViewWidgetSerializer(),
+    ListViewWidgetSerializer(),
+    PageViewWidgetSerializer(),
+    ExpandedWidgetSerializer(),
+    PaddingWidgetSerializer(),
+    CenterWidgetSerializer(),
+    AlignWidgetSerializer(),
+    AspectRatioWidgetSerializer(),
+    FittedBoxWidgetSerializer(),
+    BaselineWidgetSerializer(),
+    StackWidgetSerializer(),
+    PositionedWidgetSerializer(),
+    IndexedStackWidgetSerializer(),
+    SizedBoxWidgetSerializer(),
+    OpacityWidgetSerializer(),
+    WrapWidgetSerializer(),
+    ClipRRectWidgetSerializer()
+  ];
+
   // use this method for adding your custom widget parser
   static void addParser(WidgetParser parser) {
     log.info(
         "add custom widget parser, make sure you don't overwirte the widget type.");
-    _parsers.add(parser);
+    _parsers.insert(0,parser);
+  }
+
+  static void addSerializer(WidgetSerializer serializer) {
+    log.info(
+        "add custom widget Serializer, make sure you don't overwirte the widget type.");
+    _serializers.insert(0,serializer);
   }
 
   Widget build(String json, BuildContext buildContext, ClickListener listener) {
@@ -97,6 +153,34 @@ class DynamicWidgetBuilder {
     }
     return rt;
   }
+
+   Map<String, dynamic> serialize(Widget widget) {
+    Widget widgetToSerialize = getWidgetToSerialize(widget);
+    for (WidgetSerializer serializer in _serializers) {
+      if (serializer.forWidget(widgetToSerialize)) {
+        Map<String, dynamic> result = serializer.serialize(widgetToSerialize);
+        result.putIfAbsent('type', () => serializer.widgetName);
+        return result;
+      }
+    }
+
+    log.warning("Not supported type: ${widget.toString()}");
+    return null;
+  }
+
+  Widget getWidgetToSerialize(Widget widget) {
+    if (widget is GestureDetector) return getWidgetToSerialize(widget.child);
+    return widget;
+  }
+
+  List<Map<String, dynamic>> serializeList(List<Widget> widgets) {
+    List<Map<String, dynamic>> list = [];
+    for (Widget widget in widgets) {
+      list.add(serialize(widget));
+    }
+
+    return list;
+  }
 }
 
 /// extends this class to make a Flutter widget parser.
@@ -111,6 +195,19 @@ abstract class WidgetParser {
   /// method as "Text" == widgetName, for more details, please see
   /// @TextWidgetParser
   bool forWidget(String widgetName);
+}
+ /// extends this class to make a Flutter widget Serializer.
+abstract class WidgetSerializer {
+  /// parse the json map into a flutter widget.
+  Map<String, dynamic> serialize(Widget widget);
+
+  /// check the matched widget type. for example:
+  /// {"type" : "Text", "data" : "Denny"}
+  /// if you want to make a flutter Text widget, you should implement this
+  /// method as "Text" == widgetName, for more details, please see
+  /// @TextWidgetSerializer
+  bool forWidget(Widget widget);
+  String widgetName;
 }
 
 abstract class ClickListener {
