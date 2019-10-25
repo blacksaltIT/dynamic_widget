@@ -57,8 +57,16 @@ class ListViewWidget extends StatefulWidget {
 
   ListViewWidget(this._params, this._buildContext);
 
+  _ListViewWidgetState _state;
+  _ListViewWidgetState get state {
+    return _state;
+  }
+
   @override
-  _ListViewWidgetState createState() => _ListViewWidgetState(_params);
+  _ListViewWidgetState createState() {
+    if (_state == null) _state = _ListViewWidgetState(_params);
+    return _state;
+  }
 }
 
 class _ListViewWidgetState extends State<ListViewWidget> {
@@ -85,6 +93,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
       loadCompleted = true;
       return;
     }
+    _getMoreData();
     _scrollController.addListener(() {
       if (!loadCompleted &&
           _scrollController.position.pixels ==
@@ -155,23 +164,11 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 [
     {
       "type": "AssetImage",
-      "name": "assets/vip.png"
+      "name": "assets/images/burger.png"
     },
     {
       "type": "AssetImage",
-      "name": "assets/vip.png"
-    },
-    {
-      "type": "AssetImage",
-      "name": "assets/vip.png"
-    },
-    {
-      "type": "AssetImage",
-      "name": "assets/vip.png"
-    },
-    {
-      "type": "AssetImage",
-      "name": "assets/vip.png"
+      "name": "assets/images/burger.png"
     }
 ]          
       """;
