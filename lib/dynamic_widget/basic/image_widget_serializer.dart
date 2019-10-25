@@ -1,7 +1,6 @@
+import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
-
-import 'dynamic_widget_serializer.dart';
 
 class AssetImageWidgetSerializer implements WidgetSerializer {
   String widgetName = "AssetImage";

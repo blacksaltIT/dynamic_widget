@@ -1,7 +1,6 @@
-import 'package:eflyr/util/engine/serializer/utils.dart';
+import '../../dynamic_widget.dart';
+import '../utils.dart';
 import 'package:flutter/widgets.dart';
-
-import 'dynamic_widget_serializer.dart';
 
 class BaselineWidgetSerializer implements WidgetSerializer {
   String widgetName = "Baseline";
@@ -18,7 +17,7 @@ class BaselineWidgetSerializer implements WidgetSerializer {
     return {
       'baseline': baseline.baseline,
       'baselineType': serializeTextBaseline(baseline.baselineType),
-      'child': DynamicWidgetSerializer().serialize(baseline.child)
+      'child': DynamicWidgetBuilder().serialize(baseline.child)
     };
   }
 }

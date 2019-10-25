@@ -1,7 +1,7 @@
-import 'package:eflyr/util/engine/serializer/utils.dart';
+import '../../dynamic_widget.dart';
+import '../utils.dart';
 import 'package:flutter/widgets.dart';
 
-import 'dynamic_widget_serializer.dart';
 
 class PageViewWidgetSerializer implements WidgetSerializer {
   String widgetName = "PageView";
@@ -19,7 +19,7 @@ class PageViewWidgetSerializer implements WidgetSerializer {
       'scrollDirection': serializeAxis(page.scrollDirection),
       'reverse': page.reverse,
       'pageSnapping': page.pageSnapping,
-      'children': DynamicWidgetSerializer().serializeList(
+      'children': DynamicWidgetBuilder().serializeList(
           (page.childrenDelegate as SliverChildListDelegate).children)
     };
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
-
-import 'dynamic_widget_serializer.dart';
-import 'utils.dart';
+import '../../dynamic_widget.dart';
+import '../utils.dart';
 
 class TextWidgetSerializer implements WidgetSerializer {
   String widgetName = "Text";

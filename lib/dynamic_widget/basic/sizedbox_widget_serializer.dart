@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'dynamic_widget_serializer.dart';
+import '../../dynamic_widget.dart';
 
 class SizedBoxWidgetSerializer implements WidgetSerializer {
   String widgetName = "SizedBox";
@@ -21,7 +21,7 @@ class SizedBoxWidgetSerializer implements WidgetSerializer {
           : "SizedBox",
       'width': sizedBox.width == double.infinity ? null : sizedBox.width,
       'height': sizedBox.height == double.infinity ? null : sizedBox.height,
-      'child': DynamicWidgetSerializer().serialize(sizedBox.child)
+      'child': DynamicWidgetBuilder().serialize(sizedBox.child)
     };
   }
 }

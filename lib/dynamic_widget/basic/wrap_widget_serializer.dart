@@ -1,7 +1,6 @@
+import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
-
-import 'dynamic_widget_serializer.dart';
 
 class WrapWidgetSerializer implements WidgetSerializer {
   String widgetName = "Wrap";
@@ -25,7 +24,7 @@ class WrapWidgetSerializer implements WidgetSerializer {
       'verticalDirection': serializeVerticalDirection(wrap.verticalDirection),
       'runSpacing': wrap.runSpacing,
       'runAlignment': serializeWrapAlignment(wrap.runAlignment),
-      'children': DynamicWidgetSerializer().serializeList(wrap.children)
+      'children': DynamicWidgetBuilder().serializeList(wrap.children)
     };
   }
 }

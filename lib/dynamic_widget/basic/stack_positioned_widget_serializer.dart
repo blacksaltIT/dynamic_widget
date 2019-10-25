@@ -1,7 +1,6 @@
+import '../../dynamic_widget.dart';
 import '../utils.dart';
 import 'package:flutter/widgets.dart';
-
-import 'dynamic_widget_serializer.dart';
 
 class StackWidgetSerializer implements WidgetSerializer {
   String widgetName = "Stack";
@@ -21,7 +20,7 @@ class StackWidgetSerializer implements WidgetSerializer {
       'fit': serializeStackFit(stack.fit),
       'overflow': serializeOwerflow(stack.overflow),
       'children':
-          DynamicWidgetSerializer().serializeList(stack.children)
+          DynamicWidgetBuilder().serializeList(stack.children)
     };
   }
 }
@@ -45,7 +44,7 @@ class IndexedStackWidgetSerializer implements WidgetSerializer {
       'overflow': serializeOwerflow(stack.overflow),
       'index': stack.index,
       'children':
-          DynamicWidgetSerializer().serializeList(stack.children)
+          DynamicWidgetBuilder().serializeList(stack.children)
     };
   }
 }
@@ -69,7 +68,7 @@ class PositionedWidgetSerializer implements WidgetSerializer {
       'bottom': positioned.bottom,
       'width': positioned.width,
       'height': positioned.height,
-      'child': DynamicWidgetSerializer().serialize(positioned.child)
+      'child': DynamicWidgetBuilder().serialize(positioned.child)
     };
   }
 }
