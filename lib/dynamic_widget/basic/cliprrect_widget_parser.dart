@@ -3,11 +3,23 @@ import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class ClipRRectWidgetParser extends WidgetParser {
+  final String widgetName = "ClipRRect";
+
   @override
-  bool forWidget(String widgetName) {
-    return "ClipRRect" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is ClipRRect;
   }
 
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    ClipRRect clipRRect = widget as ClipRRect;
+
+    return {
+      'borderRadius': serializeBorderRadius(clipRRect.borderRadius),
+      'clipBehavior': serializeClipBehavior(clipRRect.clipBehavior),
+      'child': DynamicWidgetBuilder().serialize(clipRRect.child)
+    };
+  }
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener) {

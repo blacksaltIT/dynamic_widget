@@ -3,10 +3,7 @@ import 'package:flutter/widgets.dart';
 
 //Creates a box that will become as large as its parent allows.
 class ExpandedSizedBoxWidgetParser extends WidgetParser {
-  @override
-  bool forWidget(String widgetName) {
-    return "ExpandedSizedBox" == widgetName;
-  }
+  final String widgetName = "ExpandedSizedBox";
 
   @override
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
@@ -19,9 +16,26 @@ class ExpandedSizedBoxWidgetParser extends WidgetParser {
 }
 
 class SizedBoxWidgetParser extends WidgetParser {
+  final String widgetName = "SizedBox";
+
   @override
-  bool forWidget(String widgetName) {
-    return "SizedBox" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is SizedBox;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    SizedBox sizedBox = widget as SizedBox;
+
+    return {
+      'name': sizedBox.width == double.infinity &&
+              sizedBox.height == double.infinity
+          ? "ExpandedSizedBox"
+          : "SizedBox",
+      'width': sizedBox.width == double.infinity ? null : sizedBox.width,
+      'height': sizedBox.height == double.infinity ? null : sizedBox.height,
+      'child': DynamicWidgetBuilder().serialize(sizedBox.child)
+    };
   }
 
   @override

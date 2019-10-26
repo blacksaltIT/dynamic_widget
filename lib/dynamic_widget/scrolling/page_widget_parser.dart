@@ -1,10 +1,14 @@
 import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:flutter/widgets.dart';
 
+import '../utils.dart';
+
 class PageViewWidgetParser extends WidgetParser {
+  final String widgetName = "PageView";
+
   @override
-  bool forWidget(String widgetName) {
-    return "PageView" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is PageView;
   }
 
   @override
@@ -22,5 +26,18 @@ class PageViewWidgetParser extends WidgetParser {
       children: DynamicWidgetBuilder.buildWidgets(
           map['children'], buildContext, listener),
     );
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    PageView page = widget as PageView;
+
+    return {
+      'scrollDirection': serializeAxis(page.scrollDirection),
+      'reverse': page.reverse,
+      'pageSnapping': page.pageSnapping,
+      'children': DynamicWidgetBuilder().serializeList(
+          (page.childrenDelegate as SliverChildListDelegate).children)
+    };
   }
 }

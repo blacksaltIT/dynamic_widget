@@ -1,10 +1,25 @@
 import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:flutter/widgets.dart';
 
+import '../utils.dart';
+
 class BaselineWidgetParser extends WidgetParser {
+  final String widgetName = "Baseline";
+
   @override
-  bool forWidget(String widgetName) {
-    return "Baseline" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is Baseline;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    Baseline baseline = widget as Baseline;
+
+    return {
+      'baseline': baseline.baseline,
+      'baselineType': serializeTextBaseline(baseline.baselineType),
+      'child': DynamicWidgetBuilder().serialize(baseline.child)
+    };
   }
 
   @override

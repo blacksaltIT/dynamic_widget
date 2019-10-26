@@ -15,9 +15,29 @@ class EventHolder extends StatelessWidget {
 }
 
 class RaisedButtonParser extends WidgetParser {
+  final String widgetName = "RaisedButton";
+
   @override
-  bool forWidget(String widgetName) {
-    return "RaisedButton" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is EventHolder && widget.child is RaisedButton;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    EventHolder eventHolder = widget as EventHolder;
+    RaisedButton raisedButton = eventHolder.child as RaisedButton;
+
+    return {
+      'click_event': eventHolder.events['click_event'],
+      'color': serializeColor(raisedButton.color),
+      'disabledColor': serializeColor(raisedButton.disabledColor),
+      'disabledTextColor': serializeColor(raisedButton.disabledTextColor),
+      'elevation': raisedButton.elevation,
+      'padding': serializeEdgeInsetsGeometry(raisedButton.padding),
+      'splashColor': serializeColor(raisedButton.splashColor),
+      'textColor': serializeColor(raisedButton.splashColor),
+      'child': DynamicWidgetBuilder().serialize(raisedButton.child)
+    };
   }
 
   @override

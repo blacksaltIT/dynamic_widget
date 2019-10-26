@@ -3,9 +3,23 @@ import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class PlaceholderWidgetParser extends WidgetParser {
+  final String widgetName = "Placeholder";
+
   @override
-  bool forWidget(String widgetName) {
-    return "Placeholder" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is Placeholder;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    Placeholder placeholder = widget as Placeholder;
+
+    return {
+      'color': serializeColor(placeholder.color),
+      'strokeWidth': placeholder.strokeWidth,
+      'fallbackWidth': placeholder.fallbackWidth,
+      'fallbackHeight': placeholder.fallbackHeight
+    };
   }
 
   @override

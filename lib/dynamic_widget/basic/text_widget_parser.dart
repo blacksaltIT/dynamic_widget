@@ -3,10 +3,23 @@ import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 
-class TextWidgetParser implements WidgetParser {
+class TextWidgetParser extends WidgetParser {
+  final String widgetName = "Text";
+
   @override
-  bool forWidget(String widgetName) {
-    return "Text" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is Text;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    Text text = widget as Text;
+
+    return {
+      'data': text.data,
+      'style': serializeTextStyle(text.style),
+      'align': serializeTextAlign(text.textAlign)
+    };
   }
 
   @override

@@ -2,9 +2,21 @@ import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:flutter/widgets.dart';
 
 class ExpandedWidgetParser extends WidgetParser {
+  final String widgetName = "Expanded";
+
   @override
-  bool forWidget(String widgetName) {
-    return "Expanded" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is Expanded;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    Expanded expanded = widget as Expanded;
+
+    return {
+      'flex': expanded.flex,
+      'child': DynamicWidgetBuilder().serialize(expanded.child)
+    };
   }
 
   @override

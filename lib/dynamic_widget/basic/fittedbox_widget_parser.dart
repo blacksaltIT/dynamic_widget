@@ -3,9 +3,22 @@ import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class FittedBoxWidgetParser extends WidgetParser {
+  final String widgetName = "FittedBox";
+
   @override
-  bool forWidget(String widgetName) {
-    return "FittedBox" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is FittedBox;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    FittedBox fittedBox = widget as FittedBox;
+
+    return {
+      'alignment': serializeAlignment(fittedBox.alignment),
+      'fit': serializeBoxFit(fittedBox.fit),
+      'child': DynamicWidgetBuilder().serialize(fittedBox.child)
+    };
   }
 
   @override

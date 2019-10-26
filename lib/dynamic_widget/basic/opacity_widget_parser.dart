@@ -2,9 +2,22 @@ import 'package:dynamic_widget/dynamic_widget.dart';
 import 'package:flutter/widgets.dart';
 
 class OpacityWidgetParser extends WidgetParser {
+  final String widgetName = "Opacity";
+
   @override
-  bool forWidget(String widgetName) {
-    return "Opacity" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is Opacity;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    Opacity opacity = widget as Opacity;
+
+    return {
+      'alwaysIncludeSemantics': opacity.alwaysIncludeSemantics,
+      'opacity': opacity.opacity,
+      'child': DynamicWidgetBuilder().serialize(opacity.child)
+    };
   }
 
   @override

@@ -3,9 +3,23 @@ import 'package:dynamic_widget/dynamic_widget/utils.dart';
 import 'package:flutter/widgets.dart';
 
 class AlignWidgetParser extends WidgetParser {
+  final String widgetName = "Align";
+
   @override
-  bool forWidget(String widgetName) {
-    return "Align" == widgetName;
+  bool forSerialize(Widget widget) {
+    return widget is Align;
+  }
+
+  @override
+  Map<String, dynamic> serialize(Widget widget) {
+    Align alignment = widget as Align;
+
+    return {
+      'alignment': serializeAlignment(alignment.alignment),
+      'widthFactor': alignment.widthFactor,
+      'heightFactor': alignment.heightFactor,
+      'child': DynamicWidgetBuilder().serialize(alignment.child)
+    };
   }
 
   @override
