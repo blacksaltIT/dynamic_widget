@@ -24,6 +24,7 @@ import 'dart:convert';
 import 'package:logging/logging.dart';
 
 import 'dynamic_widget/basic/cliprrect_widget_parser.dart';
+import 'dynamic_widget/basic/clipoval_widget_parser.dart';
 import 'dynamic_widget/basic/stack_positioned_widget_parser.dart';
 import 'dynamic_widget/scrolling/page_widget_parser.dart';
 
@@ -57,16 +58,16 @@ class DynamicWidgetBuilder {
     SizedBoxWidgetParser(),
     OpacityWidgetParser(),
     WrapWidgetParser(),
-    ClipRRectWidgetParser()
+    ClipRRectWidgetParser(),
+    ClipOvalWidgetParser()
   ];
 
   // use this method for adding your custom widget parser
   static void addParser(WidgetParser parser) {
     log.info(
         "add custom widget parser, make sure you don't overwirte the widget type.");
-    _parsers.insert(0,parser);
+    _parsers.insert(0, parser);
   }
-
 
   Widget build(String json, BuildContext buildContext, ClickListener listener) {
     var map = jsonDecode(json);
@@ -99,7 +100,7 @@ class DynamicWidgetBuilder {
     return rt;
   }
 
-   Map<String, dynamic> serialize(Widget widget) {
+  Map<String, dynamic> serialize(Widget widget) {
     Widget widgetToSerialize = getWidgetToSerialize(widget);
     for (WidgetParser parser in _parsers) {
       if (parser.forSerialize(widgetToSerialize)) {
@@ -131,6 +132,7 @@ class DynamicWidgetBuilder {
 /// extends this class to make a Flutter widget parser.
 abstract class WidgetParser {
   final String widgetName = "";
+
   /// parse the json map into a flutter widget.
   Widget parse(Map<String, dynamic> map, BuildContext buildContext,
       ClickListener listener);
@@ -144,7 +146,8 @@ abstract class WidgetParser {
   bool forWidget(String widgetName) {
     return this.widgetName == widgetName;
   }
-  bool forSerialize(Widget widget) => false; 
+
+  bool forSerialize(Widget widget) => false;
 }
 
 abstract class ClickListener {
