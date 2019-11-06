@@ -6,7 +6,7 @@ class PlaceholderWidgetParser extends WidgetParser {
   final String widgetName = "Placeholder";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Placeholder;
   }
 

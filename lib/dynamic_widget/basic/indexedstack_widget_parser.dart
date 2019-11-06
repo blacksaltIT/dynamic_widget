@@ -6,7 +6,7 @@ class IndexedStackWidgetParser extends WidgetParser {
   final String widgetName = "IndexedStack";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is IndexedStack;
   }
 

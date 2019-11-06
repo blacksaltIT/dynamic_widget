@@ -6,7 +6,7 @@ class WrapWidgetParser extends WidgetParser {
   final String widgetName = "Wrap";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Wrap;
   }
 

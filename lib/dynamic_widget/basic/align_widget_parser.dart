@@ -6,7 +6,7 @@ class AlignWidgetParser extends WidgetParser {
   final String widgetName = "Align";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Align;
   }
 

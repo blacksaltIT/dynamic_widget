@@ -5,7 +5,7 @@ class ExpandedWidgetParser extends WidgetParser {
   final String widgetName = "Expanded";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Expanded;
   }
 

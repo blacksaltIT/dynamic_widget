@@ -5,7 +5,7 @@ class AspectRatioWidgetParser extends WidgetParser {
   final String widgetName = "AspectRatio";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is AspectRatio;
   }
 

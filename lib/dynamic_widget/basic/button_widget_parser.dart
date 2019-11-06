@@ -18,7 +18,7 @@ class RaisedButtonParser extends WidgetParser {
   final String widgetName = "RaisedButton";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is EventHolder && widget.child is RaisedButton;
   }
 

@@ -6,7 +6,7 @@ class PositionedWidgetParser extends WidgetParser {
   final String widgetName = "Positioned";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Positioned;
   }
 
@@ -45,7 +45,7 @@ class StackWidgetParser extends WidgetParser {
   final String widgetName = "Stack";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Stack;
   }
 

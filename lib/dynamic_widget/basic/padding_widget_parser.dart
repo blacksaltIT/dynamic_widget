@@ -6,7 +6,7 @@ class PaddingWidgetParser extends WidgetParser {
   final String widgetName = "Padding";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Padding;
   }
 

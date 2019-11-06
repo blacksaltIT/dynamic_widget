@@ -6,7 +6,7 @@ class ContainerWidgetParser extends WidgetParser {
   final String widgetName = "Container";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Container;
   }
 

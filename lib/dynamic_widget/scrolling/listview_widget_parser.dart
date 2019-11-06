@@ -11,7 +11,7 @@ class ListViewWidgetParser extends WidgetParser {
   String widgetName = "ListView";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is ListViewWidget;
   }
 

@@ -5,7 +5,7 @@ class CenterWidgetParser extends WidgetParser {
   final String widgetName = "Center";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Center;
   }
 

@@ -9,7 +9,7 @@ class AssetImageWidgetParser extends WidgetParser {
   final String widgetName = "AssetImage";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Image && widget.image is AssetImage;
   }
 
@@ -110,7 +110,7 @@ class NetworkImageWidgetParser extends WidgetParser {
   final String widgetName = "NetworkImage";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Image && widget.image is NetworkImage;
   }
 
@@ -209,7 +209,7 @@ class FileImageWidgetParser extends WidgetParser {
   final String widgetName = "FileImage";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Image && widget.image is FileImage;
   }
 

@@ -7,7 +7,7 @@ class PageViewWidgetParser extends WidgetParser {
   final String widgetName = "PageView";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is PageView;
   }
 

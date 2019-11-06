@@ -11,7 +11,7 @@ class GridViewWidgetParser extends WidgetParser {
   String widgetName = "GridView";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is GridViewWidget;
   }
 

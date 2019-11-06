@@ -6,7 +6,7 @@ class ClipRRectWidgetParser extends WidgetParser {
   final String widgetName = "ClipRRect";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is ClipRRect;
   }
 

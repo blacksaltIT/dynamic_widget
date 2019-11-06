@@ -100,8 +100,8 @@ class DynamicWidgetBuilder {
     return rt;
   }
 
-  Map<String, dynamic> serialize(Widget widget) {
-    Widget widgetToSerialize = getWidgetToSerialize(widget);
+  Map<String, dynamic> serialize(dynamic widget) {
+    dynamic widgetToSerialize = getWidgetToSerialize(widget);
     for (WidgetParser parser in _parsers) {
       if (parser.forSerialize(widgetToSerialize)) {
         Map<String, dynamic> result = parser.serialize(widgetToSerialize);
@@ -114,14 +114,14 @@ class DynamicWidgetBuilder {
     return null;
   }
 
-  Widget getWidgetToSerialize(Widget widget) {
+  dynamic getWidgetToSerialize(dynamic widget) {
     if (widget is GestureDetector) return getWidgetToSerialize(widget.child);
     return widget;
   }
 
-  List<Map<String, dynamic>> serializeList(List<Widget> widgets) {
+  List<Map<String, dynamic>> serializeList(List<dynamic> widgets) {
     List<Map<String, dynamic>> list = [];
-    for (Widget widget in widgets) {
+    for (dynamic widget in widgets) {
       list.add(serialize(widget));
     }
 
@@ -147,7 +147,7 @@ abstract class WidgetParser {
     return this.widgetName == widgetName;
   }
 
-  bool forSerialize(Widget widget) => false;
+  bool forSerialize(dynamic widget) => false;
 }
 
 abstract class ClickListener {

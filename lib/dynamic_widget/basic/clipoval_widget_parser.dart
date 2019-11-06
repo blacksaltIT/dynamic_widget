@@ -6,7 +6,7 @@ class ClipOvalWidgetParser extends WidgetParser {
   final String widgetName = "ClipOval";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is ClipOval;
   }
 

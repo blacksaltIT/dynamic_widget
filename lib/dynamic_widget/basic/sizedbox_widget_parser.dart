@@ -19,7 +19,7 @@ class SizedBoxWidgetParser extends WidgetParser {
   final String widgetName = "SizedBox";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is SizedBox;
   }
 

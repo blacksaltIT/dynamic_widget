@@ -7,7 +7,7 @@ class TextWidgetParser extends WidgetParser {
   final String widgetName = "Text";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Text;
   }
 

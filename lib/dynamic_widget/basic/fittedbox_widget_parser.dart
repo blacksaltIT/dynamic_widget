@@ -6,7 +6,7 @@ class FittedBoxWidgetParser extends WidgetParser {
   final String widgetName = "FittedBox";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is FittedBox;
   }
 

@@ -7,7 +7,7 @@ class BaselineWidgetParser extends WidgetParser {
   final String widgetName = "Baseline";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Baseline;
   }
 

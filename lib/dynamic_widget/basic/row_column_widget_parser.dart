@@ -6,7 +6,7 @@ class RowWidgetParser extends WidgetParser {
   final String widgetName = "Row";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Row;
   }
 
@@ -58,7 +58,7 @@ class ColumnWidgetParser extends WidgetParser {
   final String widgetName = "Column";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Row;
   }
 

@@ -5,7 +5,7 @@ class OpacityWidgetParser extends WidgetParser {
   final String widgetName = "Opacity";
 
   @override
-  bool forSerialize(Widget widget) {
+  bool forSerialize(dynamic widget) {
     return widget is Opacity;
   }
 
