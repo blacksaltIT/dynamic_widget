@@ -104,6 +104,7 @@ class DynamicWidgetBuilder {
     dynamic widgetToSerialize = getWidgetToSerialize(widget);
     for (WidgetParser parser in _parsers) {
       if (parser.forSerialize(widgetToSerialize)) {
+        assert(parser.widgetName.isNotEmpty);
         Map<String, dynamic> result = parser.serialize(widgetToSerialize);
         result.putIfAbsent('type', () => parser.widgetName);
         return result;
