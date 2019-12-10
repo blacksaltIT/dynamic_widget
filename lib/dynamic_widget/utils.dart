@@ -604,7 +604,7 @@ String serializeTextDirection(TextDirection textDirection) {
 
 String serializeColor(Color color) {
   if (color == null) return null;
-  return "#${color.value.toRadixString(16).substring(2)}";
+  return "#${color.value.toRadixString(16)}";
 }
 
 Map<String, dynamic> serializeTextStyle(TextStyle textStyle) {
